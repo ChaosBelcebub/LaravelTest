@@ -1,20 +1,21 @@
-<!doctype html>
+@extends('app')
 
-<html lang="en">
+@section('content')
 
-<head>
+    <h1>About</h1>
 
-    <meta charset="UTF-8">
-    <title>About</title>
+    @if (count($people))
+        <h3>People, {{$first}} {{$last}} likes</h3>
+        <ul>
 
-</head>
+            @foreach($people as $person)
 
-<body>
+                <li>{{ $person }}</li>
 
-    <h1>About Me: {!! $first !!} {!! $last !!}</h1>
+            @endforeach
 
+        </ul>
+    @endif
     <p>Lorem Ipsum</p>
 
-</body>
-
-</html>
+@stop
