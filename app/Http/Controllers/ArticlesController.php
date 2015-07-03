@@ -10,6 +10,9 @@ use Request;
 
 class ArticlesController extends Controller
 {
+    /**
+     * @return $this
+     */
     public function index()
     {
         $articles = Article::latest('published_at')->published()->get();
@@ -17,6 +20,10 @@ class ArticlesController extends Controller
         return view('articles.index')->with('articles', $articles);
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function show($id)
     {
         $article = Article::findOrFail($id);
@@ -26,12 +33,19 @@ class ArticlesController extends Controller
         return view('articles.show')->with('article', $article);
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('articles.create');
     }
 
-    public function store()
+    /**
+     * @param CreateArticleRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Requests\CreateArticleRequest $request)
     {
         Article::create(Request::all());
 
